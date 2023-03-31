@@ -22,11 +22,11 @@ app.use(express_1.default.urlencoded({ extended: false }));
 const port = 3001;
 app.get('/', (req, res) => {
     const pool = openDb();
-    pool.query('select * from task', (error, result) => {
+    pool.query('select * from task', (error, results) => {
         if (error) {
             res.status(500).json({ error: error.message });
         }
-        res.status(200).json(result.rows);
+        res.status(200).json(results.rows);
     });
 });
 app.delete("/delete/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -50,11 +50,17 @@ app.post('/new', (req, res) => {
 });
 const openDb = () => {
     const pool = new pg_1.Pool({
-        user: 'postgres',
-        host: 'localhost',
-        database: 'todo',
-        password: '@Dipu1992',
-        port: 5432
+        // user: 'postgres',
+        // host: 'localhost',
+        // database: 'todo',
+        // password: '@Dipu1992',
+        // port: 5432
+        user: 'root',
+        host: 'dpg-cgjjjtd269vbelg771b0-a.oregon-postgres.render.com',
+        database: 'todo_1bob',
+        password: '00HTPfKSCCpvSkIkGHzGfnnKKSWZPXnf',
+        port: 5432,
+        ssl: true
     });
     return pool;
 };
